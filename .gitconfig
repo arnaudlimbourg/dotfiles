@@ -1,0 +1,136 @@
+[user]
+  name = Arnaud Limbourg
+  email = arnaud@limbourg.com
+
+[color]
+    ui = auto
+
+[alias]
+  st = status
+  ci = commit -v -S
+  s = switch
+  co = checkout
+  lg = log --graph --pretty=tformat:'%Cred %h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
+  lgg = log --pretty=format:"%h%s " --graph
+  commend = commit --amend --no-edit
+  shorty = status --short --branch
+  merc = merge --no-ff
+  grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+	branches = !/opt/homebrew/bin/legit branches
+	publish = !/opt/homebrew/bin/legit publish
+	unpublish = !/opt/homebrew/bin/legit unpublish
+	sync = !/opt/homebrew/bin/legit sync
+  resync = !/opt/homebrew/bin/legit resync
+	undo = !/opt/homebrew/bin/legit undo
+  up = push origin HEAD
+  down = pull origin HEAD
+
+[core]
+  ; pager = diff-so-fancy | less --tabs=1,5 -R
+  pager = delta
+  #
+  # Out of luck: on Windows w/o msysGit? You may have Notepad++…
+  # editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
+  # 
+  # If you want to use Sublime Text 2's subl wrapper:
+  # editor = subl -w
+  # 
+  whitespace = -trailing-space
+  excludesfile = /Users/a.limbourg/.gitignore_global
+  editor = nvim
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    features = delta-mine 
+
+[delta "delta-mine"]
+    syntax-theme = OneHalfLight 
+
+[diff]
+  mnemonicPrefix = true
+  wordRegex = .
+  #external = difft
+
+[fetch]
+  recurseSubmodules = on-demand
+
+[grep]
+  extendedRegexp = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[log]
+  abbrevCommit = true
+
+[merge]
+  conflictStyle = diff3
+
+[mergetool]
+  keepBackup = false
+  keepTemporaries = false
+  prompt = false
+
+[pull]
+  # This is GREAT… when you know what you're doing and are careful
+  # not to pull --no-rebase over a local line containing a true merge.
+  # rebase = true
+  # WARNING! This option, which does away with the one gotcha of
+  # auto-rebasing on pulls, is only available from 1.8.5 onwards.
+  rebase = true
+
+[push]
+  default = upstream
+
+[rerere]
+  # If, like me, you like rerere, decomment these
+  # autoupdate = true
+  # enabled = true
+
+[status]
+  submoduleSummary = true
+
+[filter "media"]
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
+
+[filter "hawser"]
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
+  required = true
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+; [credential]
+;   helper = osxkeychain
+
+[protocol]
+  version = 2
+
+[commit]
+  template = /Users/a.limbourg/.stCommitMsg
+	gpgsign = true
+
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+
+[init]
+  defaultBranch = main
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
